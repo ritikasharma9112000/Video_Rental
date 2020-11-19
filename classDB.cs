@@ -17,7 +17,7 @@ namespace Video_Rental
         string QueryString;
         public classDB()
         {
-            string ConnString = @"Data Source=LAPTOP-VF617FP0\SQLEXPRESS;Initial Catalog=Video_Rental_System;Integrated Security=True";
+            string ConnString = @"Data Source=LAPTOP-VF617FP0\SQLEXPRESS;Initial Catalog=Video_Rental;Integrated Security=True";
             Obj_Conn.ConnectionString = ConnString;
         }
 

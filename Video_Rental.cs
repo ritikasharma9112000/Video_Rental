@@ -72,5 +72,25 @@ namespace Video_Rental
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void movie_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox14_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
