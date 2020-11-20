@@ -17,7 +17,7 @@ namespace Video_Rental
         {
             InitializeComponent();
             Customer_Load();
-             Movies_Load();
+            Movies_Load();
             Rental_Load();
 
         }
@@ -42,7 +42,7 @@ namespace Video_Rental
         }
 
         private void movie_Click(object sender, EventArgs e)
-        {  
+        {
         }
 
         public void Movies_Load()
@@ -91,6 +91,30 @@ namespace Video_Rental
         private void textBox14_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Add_customer_btn_Click(object sender, EventArgs e)
+        {
+            if (First_name_text.Text != "" && Last_name_text.Text != "" && Address_text.Text != "" && Phone_text.Text != "")
+            {
+                string message = obj_Data.CustomerInsert(First_name_text.Text, Last_name_text.Text, Address_text.Text, Phone_text.Text);
+                MessageBox.Show(message);
+                First_name_text.Text = "";
+                Last_name_text.Text = "";
+                Address_text.Text = "";
+                Phone_text.Text = "";
+                Customer_Load();
+            }
+            else
+            {
+                MessageBox.Show("Please complete all the text boxes and then press Add button");
+
+            }
         }
     }
 }
