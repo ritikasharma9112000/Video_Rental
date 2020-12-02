@@ -80,6 +80,26 @@ namespace Video_Rental
 
         private void movie_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                string newvalue = movie_grid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                this.Text = "Row : " + e.RowIndex.ToString() + " Col : " + e.ColumnIndex.ToString() + " Value = " + newvalue;
+                obj_Data.MovieID = Convert.ToInt32(movie_grid.Rows[e.RowIndex].Cells[0].Value);
+                Rating_text.Text = movie_grid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Tittle_text.Text = movie_grid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                Year_text.Text = movie_grid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                Rental_cost_text.Text = movie_grid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                Copies_text.Text = movie_grid.Rows[e.RowIndex].Cells[5].Value.ToString();
+                Plot_text.Text = movie_grid.Rows[e.RowIndex].Cells[6].Value.ToString();
+                Genre_text.Text = movie_grid.Rows[e.RowIndex].Cells[7].Value.ToString();
+                Movie_name_text.Text = movie_grid.Rows[e.RowIndex].Cells[2].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                // code to show the message if user did not fill all the details
+                MessageBox.Show("Something is wrong", ex.Message);
+            }
 
         }
 
@@ -114,6 +134,81 @@ namespace Video_Rental
             {
                 MessageBox.Show("Please complete all the text boxes and then press Add button");
 
+            }
+        }
+
+        private void Update_customer_btn_Click(object sender, EventArgs e)
+        {
+            if (First_name_text.Text != "" && Last_name_text.Text != "" && Address_text.Text != "" && Phone_text.Text != "")
+            {
+                string message = obj_Data.CustomerUpdate(First_name_text.Text, Last_name_text.Text, Address_text.Text, Phone_text.Text);
+                MessageBox.Show(message);
+                First_name_text.Text = "";
+                Last_name_text.Text = "";
+                Address_text.Text = "";
+                Phone_text.Text = "";
+                Customer_Load();
+            }
+            else
+            {
+                MessageBox.Show("Please complete all the text boxes and then press Add button");
+
+
+
+            }
+        }
+
+        private void panelRental_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Issue_Movie_rental_btn_Click(object sender, EventArgs e)
+        {
+            if (Movie_name_text.Text != "" && Customer_name_text.Text != "")
+            {
+                string message = obj_Data.IssueMovie(Convert.ToDateTime(DateTime_rented_text.Text));
+                MessageBox.Show(message);
+                Rating_text.Text = "";
+                Tittle_text.Text = "";
+                Year_text.Text = "";
+                Rental_cost_text.Text = "";
+                Copies_text.Text = "";
+                Plot_text.Text = "";
+                Genre_text.Text = "";
+                Movie_name_text.Text = "";
+                First_name_text.Text = "";
+                Last_name_text.Text = "";
+                Address_text.Text = "";
+                Phone_text.Text = "";
+                Customer_name_text.Text = "";
+                Rental_Load();
+            }
+            else
+            {
+                // code to show the message if user did not fill all the details
+                MessageBox.Show("Please put sufficient data and add new data by clicking on Add button");
+            }
+        }
+
+        private void customer_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string newvalue = customer_grid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                this.Text = "Row : " + e.RowIndex.ToString() + " Col : " + e.ColumnIndex.ToString() + " Value = " + newvalue;
+                obj_Data.CustomerID = Convert.ToInt32(customer_grid.Rows[e.RowIndex].Cells[0].Value);
+                First_name_text.Text = customer_grid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Last_name_text.Text = customer_grid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                Phone_text.Text = customer_grid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                Address_text.Text = customer_grid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                Customer_name_text.Text = customer_grid.Rows[e.RowIndex].Cells[1].Value.ToString() + " " + customer_grid.Rows[e.RowIndex].Cells[2].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                // code to show the message if user did not fill all the details
+                MessageBox.Show("Something is wrong", ex.Message);
             }
         }
     }

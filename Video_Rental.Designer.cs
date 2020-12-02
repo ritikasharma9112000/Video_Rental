@@ -56,16 +56,17 @@
             this.Tittle_label = new System.Windows.Forms.Label();
             this.Rating_label = new System.Windows.Forms.Label();
             this.panelRental = new System.Windows.Forms.Panel();
-            this.Delete_rental_btn = new System.Windows.Forms.Button();
-            this.Update_renatl_btn = new System.Windows.Forms.Button();
-            this.Customer_ID_text = new System.Windows.Forms.TextBox();
-            this.Add_rental_btn = new System.Windows.Forms.Button();
-            this.Movies_ID_text = new System.Windows.Forms.TextBox();
+            this.dateTime_returned_text = new System.Windows.Forms.DateTimePicker();
+            this.DateTime_rented_text = new System.Windows.Forms.DateTimePicker();
+            this.Return_Movie_renatl_btn = new System.Windows.Forms.Button();
+            this.Customer_name_text = new System.Windows.Forms.TextBox();
+            this.Issue_Movie_rental_btn = new System.Windows.Forms.Button();
+            this.Movie_name_text = new System.Windows.Forms.TextBox();
             this.Date_returned_label = new System.Windows.Forms.Label();
             this.Date_rented_label = new System.Windows.Forms.Label();
             this.Rental_features = new System.Windows.Forms.Label();
-            this.Movie_ID_label = new System.Windows.Forms.Label();
-            this.Customer_ID_label = new System.Windows.Forms.Label();
+            this.Movie_name_label = new System.Windows.Forms.Label();
+            this.Customer_name_label = new System.Windows.Forms.Label();
             this.panelCustomer = new System.Windows.Forms.Panel();
             this.Update_customer_btn = new System.Windows.Forms.Button();
             this.Delete_customer_btn = new System.Windows.Forms.Button();
@@ -79,8 +80,6 @@
             this.Last_name_label = new System.Windows.Forms.Label();
             this.Address_label = new System.Windows.Forms.Label();
             this.Customer_features = new System.Windows.Forms.Label();
-            this.dateTime_rented_text = new System.Windows.Forms.DateTimePicker();
-            this.dateTime_returned_text = new System.Windows.Forms.DateTimePicker();
             this.customertab.SuspendLayout();
             this.customer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customer_grid)).BeginInit();
@@ -124,6 +123,7 @@
             this.customer_grid.Name = "customer_grid";
             this.customer_grid.Size = new System.Drawing.Size(406, 267);
             this.customer_grid.TabIndex = 1;
+            this.customer_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customer_grid_CellContentClick);
             // 
             // button5
             // 
@@ -152,8 +152,9 @@
             this.movie_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.movie_grid.Location = new System.Drawing.Point(10, 6);
             this.movie_grid.Name = "movie_grid";
-            this.movie_grid.Size = new System.Drawing.Size(315, 212);
+            this.movie_grid.Size = new System.Drawing.Size(399, 271);
             this.movie_grid.TabIndex = 0;
+            this.movie_grid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.movie_grid_CellContentClick);
             this.movie_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.movie_grid_CellContentClick);
             // 
             // rental
@@ -171,9 +172,9 @@
             // 
             this.rental_grid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.rental_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.rental_grid.Location = new System.Drawing.Point(25, 25);
+            this.rental_grid.Location = new System.Drawing.Point(6, 6);
             this.rental_grid.Name = "rental_grid";
-            this.rental_grid.Size = new System.Drawing.Size(300, 169);
+            this.rental_grid.Size = new System.Drawing.Size(403, 271);
             this.rental_grid.TabIndex = 1;
             // 
             // panelMovie
@@ -352,62 +353,69 @@
             // panelRental
             // 
             this.panelRental.Controls.Add(this.dateTime_returned_text);
-            this.panelRental.Controls.Add(this.dateTime_rented_text);
-            this.panelRental.Controls.Add(this.Delete_rental_btn);
-            this.panelRental.Controls.Add(this.Update_renatl_btn);
-            this.panelRental.Controls.Add(this.Customer_ID_text);
-            this.panelRental.Controls.Add(this.Add_rental_btn);
-            this.panelRental.Controls.Add(this.Movies_ID_text);
+            this.panelRental.Controls.Add(this.DateTime_rented_text);
+            this.panelRental.Controls.Add(this.Return_Movie_renatl_btn);
+            this.panelRental.Controls.Add(this.Customer_name_text);
+            this.panelRental.Controls.Add(this.Issue_Movie_rental_btn);
+            this.panelRental.Controls.Add(this.Movie_name_text);
             this.panelRental.Controls.Add(this.Date_returned_label);
             this.panelRental.Controls.Add(this.Date_rented_label);
             this.panelRental.Controls.Add(this.Rental_features);
-            this.panelRental.Controls.Add(this.Movie_ID_label);
-            this.panelRental.Controls.Add(this.Customer_ID_label);
+            this.panelRental.Controls.Add(this.Movie_name_label);
+            this.panelRental.Controls.Add(this.Customer_name_label);
             this.panelRental.Location = new System.Drawing.Point(38, 391);
             this.panelRental.Name = "panelRental";
             this.panelRental.Size = new System.Drawing.Size(372, 260);
             this.panelRental.TabIndex = 2;
+            this.panelRental.Paint += new System.Windows.Forms.PaintEventHandler(this.panelRental_Paint);
             // 
-            // Delete_rental_btn
+            // dateTime_returned_text
             // 
-            this.Delete_rental_btn.Location = new System.Drawing.Point(279, 222);
-            this.Delete_rental_btn.Name = "Delete_rental_btn";
-            this.Delete_rental_btn.Size = new System.Drawing.Size(75, 23);
-            this.Delete_rental_btn.TabIndex = 29;
-            this.Delete_rental_btn.Text = "Delete";
-            this.Delete_rental_btn.UseVisualStyleBackColor = true;
+            this.dateTime_returned_text.Location = new System.Drawing.Point(154, 180);
+            this.dateTime_returned_text.Name = "dateTime_returned_text";
+            this.dateTime_returned_text.Size = new System.Drawing.Size(200, 20);
+            this.dateTime_returned_text.TabIndex = 31;
+            this.dateTime_returned_text.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
-            // Update_renatl_btn
+            // DateTime_rented_text
             // 
-            this.Update_renatl_btn.Location = new System.Drawing.Point(154, 222);
-            this.Update_renatl_btn.Name = "Update_renatl_btn";
-            this.Update_renatl_btn.Size = new System.Drawing.Size(75, 23);
-            this.Update_renatl_btn.TabIndex = 28;
-            this.Update_renatl_btn.Text = "Update";
-            this.Update_renatl_btn.UseVisualStyleBackColor = true;
+            this.DateTime_rented_text.Location = new System.Drawing.Point(154, 142);
+            this.DateTime_rented_text.Name = "DateTime_rented_text";
+            this.DateTime_rented_text.Size = new System.Drawing.Size(200, 20);
+            this.DateTime_rented_text.TabIndex = 30;
             // 
-            // Customer_ID_text
+            // Return_Movie_renatl_btn
             // 
-            this.Customer_ID_text.Location = new System.Drawing.Point(198, 92);
-            this.Customer_ID_text.Name = "Customer_ID_text";
-            this.Customer_ID_text.Size = new System.Drawing.Size(100, 20);
-            this.Customer_ID_text.TabIndex = 10;
+            this.Return_Movie_renatl_btn.Location = new System.Drawing.Point(154, 222);
+            this.Return_Movie_renatl_btn.Name = "Return_Movie_renatl_btn";
+            this.Return_Movie_renatl_btn.Size = new System.Drawing.Size(108, 23);
+            this.Return_Movie_renatl_btn.TabIndex = 28;
+            this.Return_Movie_renatl_btn.Text = "Return Movie";
+            this.Return_Movie_renatl_btn.UseVisualStyleBackColor = true;
             // 
-            // Add_rental_btn
+            // Customer_name_text
             // 
-            this.Add_rental_btn.Location = new System.Drawing.Point(27, 222);
-            this.Add_rental_btn.Name = "Add_rental_btn";
-            this.Add_rental_btn.Size = new System.Drawing.Size(75, 23);
-            this.Add_rental_btn.TabIndex = 26;
-            this.Add_rental_btn.Text = "Add";
-            this.Add_rental_btn.UseVisualStyleBackColor = true;
+            this.Customer_name_text.Location = new System.Drawing.Point(198, 92);
+            this.Customer_name_text.Name = "Customer_name_text";
+            this.Customer_name_text.Size = new System.Drawing.Size(100, 20);
+            this.Customer_name_text.TabIndex = 10;
             // 
-            // Movies_ID_text
+            // Issue_Movie_rental_btn
             // 
-            this.Movies_ID_text.Location = new System.Drawing.Point(198, 50);
-            this.Movies_ID_text.Name = "Movies_ID_text";
-            this.Movies_ID_text.Size = new System.Drawing.Size(100, 20);
-            this.Movies_ID_text.TabIndex = 4;
+            this.Issue_Movie_rental_btn.Location = new System.Drawing.Point(27, 222);
+            this.Issue_Movie_rental_btn.Name = "Issue_Movie_rental_btn";
+            this.Issue_Movie_rental_btn.Size = new System.Drawing.Size(75, 23);
+            this.Issue_Movie_rental_btn.TabIndex = 26;
+            this.Issue_Movie_rental_btn.Text = "Issue Movie";
+            this.Issue_Movie_rental_btn.UseVisualStyleBackColor = true;
+            this.Issue_Movie_rental_btn.Click += new System.EventHandler(this.Issue_Movie_rental_btn_Click);
+            // 
+            // Movie_name_text
+            // 
+            this.Movie_name_text.Location = new System.Drawing.Point(198, 50);
+            this.Movie_name_text.Name = "Movie_name_text";
+            this.Movie_name_text.Size = new System.Drawing.Size(100, 20);
+            this.Movie_name_text.TabIndex = 4;
             // 
             // Date_returned_label
             // 
@@ -436,24 +444,24 @@
             this.Rental_features.TabIndex = 4;
             this.Rental_features.Text = "Rental features";
             // 
-            // Movie_ID_label
+            // Movie_name_label
             // 
-            this.Movie_ID_label.AutoSize = true;
-            this.Movie_ID_label.Location = new System.Drawing.Point(24, 53);
-            this.Movie_ID_label.Name = "Movie_ID_label";
-            this.Movie_ID_label.Size = new System.Drawing.Size(50, 13);
-            this.Movie_ID_label.TabIndex = 10;
-            this.Movie_ID_label.Text = "Movie ID";
+            this.Movie_name_label.AutoSize = true;
+            this.Movie_name_label.Location = new System.Drawing.Point(24, 53);
+            this.Movie_name_label.Name = "Movie_name_label";
+            this.Movie_name_label.Size = new System.Drawing.Size(65, 13);
+            this.Movie_name_label.TabIndex = 10;
+            this.Movie_name_label.Text = "Movie name";
             // 
-            // Customer_ID_label
+            // Customer_name_label
             // 
-            this.Customer_ID_label.AutoSize = true;
-            this.Customer_ID_label.Location = new System.Drawing.Point(24, 95);
-            this.Customer_ID_label.Name = "Customer_ID_label";
-            this.Customer_ID_label.Size = new System.Drawing.Size(65, 13);
-            this.Customer_ID_label.TabIndex = 11;
-            this.Customer_ID_label.Text = "Customer ID";
-            this.Customer_ID_label.Click += new System.EventHandler(this.label9_Click);
+            this.Customer_name_label.AutoSize = true;
+            this.Customer_name_label.Location = new System.Drawing.Point(24, 95);
+            this.Customer_name_label.Name = "Customer_name_label";
+            this.Customer_name_label.Size = new System.Drawing.Size(80, 13);
+            this.Customer_name_label.TabIndex = 11;
+            this.Customer_name_label.Text = "Customer name";
+            this.Customer_name_label.Click += new System.EventHandler(this.label9_Click);
             // 
             // panelCustomer
             // 
@@ -482,6 +490,7 @@
             this.Update_customer_btn.TabIndex = 26;
             this.Update_customer_btn.Text = "Update";
             this.Update_customer_btn.UseVisualStyleBackColor = true;
+            this.Update_customer_btn.Click += new System.EventHandler(this.Update_customer_btn_Click);
             // 
             // Delete_customer_btn
             // 
@@ -539,7 +548,7 @@
             this.First_name_text.Name = "First_name_text";
             this.First_name_text.Size = new System.Drawing.Size(100, 20);
             this.First_name_text.TabIndex = 13;
-            this.First_name_text.Text = "sg ";
+            this.First_name_text.Text = "First_name_text";
             // 
             // Phone_label
             // 
@@ -576,21 +585,6 @@
             this.Customer_features.Size = new System.Drawing.Size(92, 13);
             this.Customer_features.TabIndex = 4;
             this.Customer_features.Text = "Customer features";
-            // 
-            // dateTime_rented_text
-            // 
-            this.dateTime_rented_text.Location = new System.Drawing.Point(154, 142);
-            this.dateTime_rented_text.Name = "dateTime_rented_text";
-            this.dateTime_rented_text.Size = new System.Drawing.Size(200, 20);
-            this.dateTime_rented_text.TabIndex = 30;
-            // 
-            // dateTime_returned_text
-            // 
-            this.dateTime_returned_text.Location = new System.Drawing.Point(154, 180);
-            this.dateTime_returned_text.Name = "dateTime_returned_text";
-            this.dateTime_returned_text.Size = new System.Drawing.Size(200, 20);
-            this.dateTime_returned_text.TabIndex = 31;
-            this.dateTime_returned_text.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // Video_Rental
             // 
@@ -638,8 +632,8 @@
         private System.Windows.Forms.Label Rental_features;
         private System.Windows.Forms.Label Customer_features;
         private System.Windows.Forms.Label Date_rented_label;
-        private System.Windows.Forms.Label Customer_ID_label;
-        private System.Windows.Forms.Label Movie_ID_label;
+        private System.Windows.Forms.Label Customer_name_label;
+        private System.Windows.Forms.Label Movie_name_label;
         private System.Windows.Forms.Label Genre_label;
         private System.Windows.Forms.Label Plot_label;
         private System.Windows.Forms.Label Copies_label;
@@ -653,12 +647,12 @@
         private System.Windows.Forms.Label Last_name_label;
         private System.Windows.Forms.Label Address_label;
         private System.Windows.Forms.TextBox First_name_text;
-        private System.Windows.Forms.TextBox Customer_ID_text;
+        private System.Windows.Forms.TextBox Customer_name_text;
         private System.Windows.Forms.TextBox Plot_text;
         private System.Windows.Forms.TextBox Rating_text;
         private System.Windows.Forms.TextBox Tittle_text;
         private System.Windows.Forms.TextBox Year_text;
-        private System.Windows.Forms.TextBox Movies_ID_text;
+        private System.Windows.Forms.TextBox Movie_name_text;
         private System.Windows.Forms.TextBox Genre_text;
         private System.Windows.Forms.TextBox Copies_text;
         private System.Windows.Forms.TextBox Rental_cost_text;
@@ -669,14 +663,13 @@
         private System.Windows.Forms.Button Update_movie_btn;
         private System.Windows.Forms.Button Delete_movie_btn;
         private System.Windows.Forms.Button Add_movie_btn;
-        private System.Windows.Forms.Button Delete_rental_btn;
-        private System.Windows.Forms.Button Update_renatl_btn;
-        private System.Windows.Forms.Button Add_rental_btn;
+        private System.Windows.Forms.Button Return_Movie_renatl_btn;
+        private System.Windows.Forms.Button Issue_Movie_rental_btn;
         private System.Windows.Forms.Button Update_customer_btn;
         private System.Windows.Forms.Button Delete_customer_btn;
         private System.Windows.Forms.Button Add_customer_btn;
         private System.Windows.Forms.DateTimePicker dateTime_returned_text;
-        private System.Windows.Forms.DateTimePicker dateTime_rented_text;
+        private System.Windows.Forms.DateTimePicker DateTime_rented_text;
     }
 }
 

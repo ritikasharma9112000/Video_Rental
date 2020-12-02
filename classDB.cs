@@ -15,6 +15,7 @@ namespace Video_Rental
         private SqlDataReader Data_Reader;
         private SqlDataAdapter da = new SqlDataAdapter();
         string QueryString;
+        public int CustomerID, MovieID;
         public classDB()
         {
             string ConnString = @"Data Source=LAPTOP-VF617FP0\SQLEXPRESS;Initial Catalog=Video_Rental;Integrated Security=True";
@@ -59,7 +60,8 @@ namespace Video_Rental
             return dt;
         }
 
-        public string CustomerInsert(string FName, string LName, string Mobile, string Address)
+
+        public string CustomerUpdate(string FName, string LName, string Mobile, string Address)
         {
             try
             {
@@ -91,9 +93,78 @@ namespace Video_Rental
                 }
             }
         }
-
-
-
+        public string IssueMovie(DateTime Issue_date)
+        {
+            try
+            {
+                Cmd.Parameters.Clear();
+                Cmd.Connection = Obj_Conn;
+                QueryString = "Insert into RentedMovies(Moviename,Customername,DateRented,DateReturned) values(@MovieID,@CustID,@Issue_date,Null)";
+                Cmd.Parameters.AddWithValue("@CustID", CustomerID);
+                Cmd.Parameters.AddWithValue("@MovieID", MovieID);
+                Cmd.Parameters.AddWithValue("@Issue_date", Issue_date);
+                Cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                Cmd.ExecuteNonQuery();
+                return "Movies issued to customer";
+            }
+            catch (Exception ex)
+            {
+                // code to show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // close connection
+                if (Obj_Conn != null)
+                {
+                    Obj_Conn.Close();
+                }
+            }
+            }
+            public string CustomerInsert(string FName, string LName, string Mobile, string Address)
+            {
+                try
+                {
+                    Cmd.Parameters.Clear();
+                    Cmd.Connection = Obj_Conn;
+                    QueryString = "Insert into Customer(FirstName,LastName,Address, Phone) Values(@FirstName,@LastName,@Address, @Mobile)";
+                    Cmd.Parameters.AddWithValue("@FirstName", FName);
+                    Cmd.Parameters.AddWithValue("@LastName", LName);
+                    Cmd.Parameters.AddWithValue("@Address", Address);
+                    Cmd.Parameters.AddWithValue("@Mobile", Mobile);
+                    Cmd.CommandText = QueryString;
+                    //connection opened
+                    Obj_Conn.Open();
+                    // Executed query
+                    Cmd.ExecuteNonQuery();
+                    return " Data entered Successfully";
+                }
+                catch (Exception ex)
+                {
+                    // show error Message
+                    return ex.Message;
+                }
+                finally
+                {
+                    // close connection
+                    if (Obj_Conn != null)
+                    {
+                        Obj_Conn.Close();
+                    }
+                }
+            }
+        }
     }
-}
+
+
+
+
+    
+    
+        
+    
+
 
