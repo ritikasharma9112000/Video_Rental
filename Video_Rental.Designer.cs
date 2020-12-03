@@ -56,7 +56,7 @@
             this.Tittle_label = new System.Windows.Forms.Label();
             this.Rating_label = new System.Windows.Forms.Label();
             this.panelRental = new System.Windows.Forms.Panel();
-            this.dateTime_returned_text = new System.Windows.Forms.DateTimePicker();
+            this.DateTime_returned_text = new System.Windows.Forms.DateTimePicker();
             this.DateTime_rented_text = new System.Windows.Forms.DateTimePicker();
             this.Return_Movie_renatl_btn = new System.Windows.Forms.Button();
             this.Customer_name_text = new System.Windows.Forms.TextBox();
@@ -80,6 +80,10 @@
             this.Last_name_label = new System.Windows.Forms.Label();
             this.Address_label = new System.Windows.Forms.Label();
             this.Customer_features = new System.Windows.Forms.Label();
+            this.tab_popularMovie = new System.Windows.Forms.TabPage();
+            this.tab_popuCust = new System.Windows.Forms.TabPage();
+            this.popuCust_dgv = new System.Windows.Forms.DataGridView();
+            this.popuMovie_dgv = new System.Windows.Forms.DataGridView();
             this.customertab.SuspendLayout();
             this.customer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customer_grid)).BeginInit();
@@ -90,6 +94,10 @@
             this.panelMovie.SuspendLayout();
             this.panelRental.SuspendLayout();
             this.panelCustomer.SuspendLayout();
+            this.tab_popularMovie.SuspendLayout();
+            this.tab_popuCust.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popuCust_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popuMovie_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // customertab
@@ -97,6 +105,8 @@
             this.customertab.Controls.Add(this.customer);
             this.customertab.Controls.Add(this.movie);
             this.customertab.Controls.Add(this.rental);
+            this.customertab.Controls.Add(this.tab_popularMovie);
+            this.customertab.Controls.Add(this.tab_popuCust);
             this.customertab.Location = new System.Drawing.Point(441, 12);
             this.customertab.Name = "customertab";
             this.customertab.SelectedIndex = 0;
@@ -228,6 +238,7 @@
             this.Add_movie_btn.TabIndex = 23;
             this.Add_movie_btn.Text = "Add";
             this.Add_movie_btn.UseVisualStyleBackColor = true;
+            this.Add_movie_btn.Click += new System.EventHandler(this.Add_movie_btn_Click);
             // 
             // Genre_text
             // 
@@ -352,7 +363,7 @@
             // 
             // panelRental
             // 
-            this.panelRental.Controls.Add(this.dateTime_returned_text);
+            this.panelRental.Controls.Add(this.DateTime_returned_text);
             this.panelRental.Controls.Add(this.DateTime_rented_text);
             this.panelRental.Controls.Add(this.Return_Movie_renatl_btn);
             this.panelRental.Controls.Add(this.Customer_name_text);
@@ -369,13 +380,13 @@
             this.panelRental.TabIndex = 2;
             this.panelRental.Paint += new System.Windows.Forms.PaintEventHandler(this.panelRental_Paint);
             // 
-            // dateTime_returned_text
+            // DateTime_returned_text
             // 
-            this.dateTime_returned_text.Location = new System.Drawing.Point(154, 180);
-            this.dateTime_returned_text.Name = "dateTime_returned_text";
-            this.dateTime_returned_text.Size = new System.Drawing.Size(200, 20);
-            this.dateTime_returned_text.TabIndex = 31;
-            this.dateTime_returned_text.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.DateTime_returned_text.Location = new System.Drawing.Point(154, 180);
+            this.DateTime_returned_text.Name = "DateTime_returned_text";
+            this.DateTime_returned_text.Size = new System.Drawing.Size(200, 20);
+            this.DateTime_returned_text.TabIndex = 31;
+            this.DateTime_returned_text.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // DateTime_rented_text
             // 
@@ -392,6 +403,7 @@
             this.Return_Movie_renatl_btn.TabIndex = 28;
             this.Return_Movie_renatl_btn.Text = "Return Movie";
             this.Return_Movie_renatl_btn.UseVisualStyleBackColor = true;
+            this.Return_Movie_renatl_btn.Click += new System.EventHandler(this.Return_Movie_renatl_btn_Click);
             // 
             // Customer_name_text
             // 
@@ -500,6 +512,7 @@
             this.Delete_customer_btn.TabIndex = 30;
             this.Delete_customer_btn.Text = "Delete";
             this.Delete_customer_btn.UseVisualStyleBackColor = true;
+            this.Delete_customer_btn.Click += new System.EventHandler(this.Delete_customer_btn_Click);
             // 
             // Phone_text
             // 
@@ -548,7 +561,6 @@
             this.First_name_text.Name = "First_name_text";
             this.First_name_text.Size = new System.Drawing.Size(100, 20);
             this.First_name_text.TabIndex = 13;
-            this.First_name_text.Text = "First_name_text";
             // 
             // Phone_label
             // 
@@ -586,6 +598,44 @@
             this.Customer_features.TabIndex = 4;
             this.Customer_features.Text = "Customer features";
             // 
+            // tab_popularMovie
+            // 
+            this.tab_popularMovie.Controls.Add(this.popuMovie_dgv);
+            this.tab_popularMovie.Location = new System.Drawing.Point(4, 22);
+            this.tab_popularMovie.Name = "tab_popularMovie";
+            this.tab_popularMovie.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_popularMovie.Size = new System.Drawing.Size(415, 283);
+            this.tab_popularMovie.TabIndex = 3;
+            this.tab_popularMovie.Text = "Popular Movies";
+            this.tab_popularMovie.UseVisualStyleBackColor = true;
+            // 
+            // tab_popuCust
+            // 
+            this.tab_popuCust.Controls.Add(this.popuCust_dgv);
+            this.tab_popuCust.Location = new System.Drawing.Point(4, 22);
+            this.tab_popuCust.Name = "tab_popuCust";
+            this.tab_popuCust.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_popuCust.Size = new System.Drawing.Size(415, 283);
+            this.tab_popuCust.TabIndex = 4;
+            this.tab_popuCust.Text = "Popular Customer";
+            this.tab_popuCust.UseVisualStyleBackColor = true;
+            // 
+            // popuCust_dgv
+            // 
+            this.popuCust_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.popuCust_dgv.Location = new System.Drawing.Point(27, 19);
+            this.popuCust_dgv.Name = "popuCust_dgv";
+            this.popuCust_dgv.Size = new System.Drawing.Size(365, 246);
+            this.popuCust_dgv.TabIndex = 0;
+            // 
+            // popuMovie_dgv
+            // 
+            this.popuMovie_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.popuMovie_dgv.Location = new System.Drawing.Point(25, 18);
+            this.popuMovie_dgv.Name = "popuMovie_dgv";
+            this.popuMovie_dgv.Size = new System.Drawing.Size(365, 246);
+            this.popuMovie_dgv.TabIndex = 1;
+            // 
             // Video_Rental
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -612,6 +662,10 @@
             this.panelRental.PerformLayout();
             this.panelCustomer.ResumeLayout(false);
             this.panelCustomer.PerformLayout();
+            this.tab_popularMovie.ResumeLayout(false);
+            this.tab_popuCust.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popuCust_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popuMovie_dgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -668,8 +722,12 @@
         private System.Windows.Forms.Button Update_customer_btn;
         private System.Windows.Forms.Button Delete_customer_btn;
         private System.Windows.Forms.Button Add_customer_btn;
-        private System.Windows.Forms.DateTimePicker dateTime_returned_text;
+        private System.Windows.Forms.DateTimePicker DateTime_returned_text;
         private System.Windows.Forms.DateTimePicker DateTime_rented_text;
+        private System.Windows.Forms.TabPage tab_popularMovie;
+        private System.Windows.Forms.DataGridView popuMovie_dgv;
+        private System.Windows.Forms.TabPage tab_popuCust;
+        private System.Windows.Forms.DataGridView popuCust_dgv;
     }
 }
 
