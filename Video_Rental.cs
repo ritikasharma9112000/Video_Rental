@@ -188,7 +188,7 @@ namespace Video_Rental
             else
             {
                 // code to show the message if user did not fill all the details
-                MessageBox.Show("Please put sufficient data and add new data by clicking on Add button");
+                MessageBox.Show("Please put sufficient data and add new details by clicking on Add button");
             }
         }
 
@@ -237,7 +237,7 @@ namespace Video_Rental
             else
             {
                 // code to show the message if user did not fill all the details
-                MessageBox.Show("Please put sufficient data and add new data by clicking on Add button");
+                MessageBox.Show("Please put sufficient data and add new details by clicking on Add button");
             }
         }
 
@@ -250,35 +250,41 @@ namespace Video_Rental
             Phone_text.Text = "";
             Address_text.Text = "";
             Customer_name_text.Text = "";
-            Customer_Load();    
-        } 
+            Customer_Load();
+        }
 
         private void Add_movie_btn_Click(object sender, EventArgs e)
         {
 
-            if (Rating_text.Text != "" && Tittle_text.Text != "" && Year_text.Text != "" && Rental_cost_text.Text != "" && Copies_text.Text !="")
+            if (Rating_text.Text != "" && Tittle_text.Text != "" && Year_text.Text != "" && Rental_cost_text.Text != "" && Copies_text.Text != "" && Plot_text.Text != "" && Genre_text.Text != "")
+           
             {
-                string message = obj_Data.MovieInsert(First_name_text.Text, Last_name_text.Text, Phone_text.Text, Address_text.Text);
+                string message = obj_Data.MovieInsert(Rating_text.Text, Tittle_text.Text, Year_text.Text, Rental_cost_text.Text, Copies_text.Text, Plot_text.Text, Genre_text.Text);
+
                 MessageBox.Show(message);
-                First_name_text.Text = "";
-                Last_name_text.Text = "";
-                Phone_text.Text = "";
-                Address_text.Text = "";
+                Rating_text.Text = "";
+                Tittle_text.Text = "";
+                Year_text.Text = "";
+                Rental_cost_text.Text = "";
+                Copies_text.Text = "";
+                Plot_text.Text = "";
+                Genre_text.Text = "";
                 Movies_Load();
             }
             else
             {
                 // code to show the message if user did not fill all the details
-                MessageBox.Show("Please put sufficient data and add new data by clicking on Add button");
+                MessageBox.Show("Please put sufficient data and add new details by clicking on Add button");
             }
         }
+    
 
         public void Popular_Cust_Load()
         {
             popuCust_dgv.DataSource = null;
             try
             {
-                popuCust_dgv.DataSource = Obj_Data.FillPopuCustomer();
+                popuCust_dgv.DataSource = obj_Data.FillPopuCustomer();
                 popuCust_dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
@@ -294,8 +300,71 @@ namespace Video_Rental
             popuMovie_dgv.DataSource = null;
             try
             {
-                popuMovie_dgv.DataSource = Obj_Data.FillPopular_Movie();
+                popuMovie_dgv.DataSource = obj_Data.FillPopular_Movie();
                 popuMovie_dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Update_movie_btn_Click(object sender, EventArgs e)
+        {
+
+            if (Rating_text.Text != "" && Tittle_text.Text != "" && Year_text.Text != "" && Rental_cost_text.Text != "" && Copies_text.Text != "" && Plot_text.Text != "" && Genre_text.Text != "")
+            {
+                string message = obj_Data.MovieUpdate(Rating_text.Text, Tittle_text.Text, Year_text.Text, Rental_cost_text.Text, Copies_text.Text, Plot_text.Text, Genre_text.Text);
+                MessageBox.Show(message);
+                Rating_text.Text = "";
+                Tittle_text.Text = "";
+                Year_text.Text = "";
+                Rental_cost_text.Text = "";
+                Copies_text.Text = "";
+                Plot_text.Text = "";
+                Genre_text.Text = "";
+                Movies_Load();
+            }
+            else
+            {
+                // code to show the message if user did not fill all the details
+                MessageBox.Show("Please put sufficient data and add new details by clicking on Add button");
+            }
+
+        }
+
+        private void Delete_movie_btn_Click(object sender, EventArgs e)
+        {
+            string message = obj_Data.MovieDelete();
+            MessageBox.Show(message);
+            Rating_text.Text = "";
+            Tittle_text.Text = "";
+            Year_text.Text = "";
+            Rental_cost_text.Text = "";
+            Copies_text.Text = "";
+            Plot_text.Text = "";
+            Genre_text.Text = "";
+            Movie_name_text.Text = "";
+            Movies_Load();
+        }
+
+        private void popuMovie_dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void allRented_button_Click(object sender, EventArgs e)
+        {
+            Rental_Load();
+        }
+
+        private void rentedOut_button_Click(object sender, EventArgs e)
+        {
+            rental_grid.DataSource = null;
+            try
+            {
+                rental_grid.DataSource = obj_Data.RentedOut_Data();
+                rental_grid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
             {

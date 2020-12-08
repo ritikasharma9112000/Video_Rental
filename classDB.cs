@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace Video_Rental
 {
-    class classDB
+    public class classDB
     {
         private SqlConnection Obj_Conn = new SqlConnection();
         private SqlCommand Cmd = new SqlCommand();
         private SqlDataReader Data_Reader;
         private SqlDataAdapter da = new SqlDataAdapter();
         string QueryString;
-        public int CustomerID, MovieID;
+        public string ConnString = @"Data Source=LAPTOP-VF617FP0\SQLEXPRESS;Initial Catalog=Video_Rental;Integrated Security=True";
+        public int CustomerID, MovieID, RentalID;
         public classDB()
         {
             string ConnString = @"Data Source=LAPTOP-VF617FP0\SQLEXPRESS;Initial Catalog=Video_Rental;Integrated Security=True";
@@ -251,6 +252,7 @@ namespace Video_Rental
                     Obj_Conn.Close();
                 }
             }
+        }
 
             public DataTable FillPopuCustomer()
             {
@@ -278,9 +280,103 @@ namespace Video_Rental
                 }
                 return dt;
             }
+
+        public string MovieUpdate(string rating, string title, string year, string Rental_Cost, string copies, string plot, string genre)
+        {
+            try
+            {
+                Cmd.Parameters.Clear();
+                Cmd.Connection = Obj_Conn;
+                QueryString = "update Movies set rating=@rating,title=@title,year=@year,rental_cost=@rental_cost,copies=@copies,plot=@plot,genre=@genre where MovieID=@MovieID";
+                Cmd.Parameters.AddWithValue("@rating", rating);
+                Cmd.Parameters.AddWithValue("@title", title);
+                Cmd.Parameters.AddWithValue("@year", year);
+                Cmd.Parameters.AddWithValue("@Rental_Cost", Rental_Cost);
+                Cmd.Parameters.AddWithValue("@Copies", copies);
+                Cmd.Parameters.AddWithValue("@Plot", plot);
+                Cmd.Parameters.AddWithValue("@Genre", genre);
+                Cmd.Parameters.AddWithValue("@MovieID", MovieID);
+                Cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                Cmd.ExecuteNonQuery();
+                return "Movies Details are updated completely";
+            }
+            catch (Exception ex)
+            {
+                // code to show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // close connection
+                if (Obj_Conn != null)
+                {
+                    Obj_Conn.Close();
+                }
+            }
         }
+        //code to fill the customer data by using delete query
+        public string MovieDelete()
+        {
+            try
+            {
+                Cmd.Parameters.Clear();
+                Cmd.Connection = Obj_Conn;
+                QueryString = "Delete from Movies where MovieID =@MovieID";
+                Cmd.Parameters.AddWithValue("@MovieID", MovieID);
+                Cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                Cmd.ExecuteNonQuery();
+                return "Movie Details Deleted Completely";
+            }
+            catch (Exception ex)
+            {
+                // code to show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // code to close connection
+                if (Obj_Conn != null)
+                {
+                    Obj_Conn.Close();
+                }
+            }
+        }
+
+        public DataTable AllMovies()
+        {
+            DataTable dt = new DataTable();
+            QueryString = "select * From AllRented";
+            using (da = new SqlDataAdapter(QueryString, Obj_Conn))
+            {
+                Obj_Conn.Open();
+                da.Fill(dt);
+                Obj_Conn.Close();
+            }
+            return dt;
+        }
+
+        public DataTable RentedOut_Data()
+        {
+            DataTable dt = new DataTable();
+            QueryString = "select * From RentedOut";
+            using (da = new SqlDataAdapter(QueryString, Obj_Conn))
+            {
+                Obj_Conn.Open();
+                da.Fill(dt);
+                Obj_Conn.Close();
+            }
+            return dt;
+        }
+
     }
 }
+
 
 
 

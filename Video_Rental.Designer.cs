@@ -36,6 +36,10 @@
             this.movie_grid = new System.Windows.Forms.DataGridView();
             this.rental = new System.Windows.Forms.TabPage();
             this.rental_grid = new System.Windows.Forms.DataGridView();
+            this.tab_popularMovie = new System.Windows.Forms.TabPage();
+            this.popuMovie_dgv = new System.Windows.Forms.DataGridView();
+            this.tab_popuCust = new System.Windows.Forms.TabPage();
+            this.popuCust_dgv = new System.Windows.Forms.DataGridView();
             this.panelMovie = new System.Windows.Forms.Panel();
             this.Update_movie_btn = new System.Windows.Forms.Button();
             this.Delete_movie_btn = new System.Windows.Forms.Button();
@@ -80,10 +84,8 @@
             this.Last_name_label = new System.Windows.Forms.Label();
             this.Address_label = new System.Windows.Forms.Label();
             this.Customer_features = new System.Windows.Forms.Label();
-            this.tab_popularMovie = new System.Windows.Forms.TabPage();
-            this.tab_popuCust = new System.Windows.Forms.TabPage();
-            this.popuCust_dgv = new System.Windows.Forms.DataGridView();
-            this.popuMovie_dgv = new System.Windows.Forms.DataGridView();
+            this.rentedOut_button = new System.Windows.Forms.Button();
+            this.allRented_button = new System.Windows.Forms.Button();
             this.customertab.SuspendLayout();
             this.customer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customer_grid)).BeginInit();
@@ -91,13 +93,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.movie_grid)).BeginInit();
             this.rental.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rental_grid)).BeginInit();
+            this.tab_popularMovie.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popuMovie_dgv)).BeginInit();
+            this.tab_popuCust.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popuCust_dgv)).BeginInit();
             this.panelMovie.SuspendLayout();
             this.panelRental.SuspendLayout();
             this.panelCustomer.SuspendLayout();
-            this.tab_popularMovie.SuspendLayout();
-            this.tab_popuCust.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popuCust_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popuMovie_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // customertab
@@ -187,8 +189,51 @@
             this.rental_grid.Size = new System.Drawing.Size(403, 271);
             this.rental_grid.TabIndex = 1;
             // 
+            // tab_popularMovie
+            // 
+            this.tab_popularMovie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.tab_popularMovie.Controls.Add(this.popuMovie_dgv);
+            this.tab_popularMovie.Location = new System.Drawing.Point(4, 22);
+            this.tab_popularMovie.Name = "tab_popularMovie";
+            this.tab_popularMovie.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_popularMovie.Size = new System.Drawing.Size(415, 283);
+            this.tab_popularMovie.TabIndex = 3;
+            this.tab_popularMovie.Text = "Popular Movies";
+            // 
+            // popuMovie_dgv
+            // 
+            this.popuMovie_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.popuMovie_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.popuMovie_dgv.GridColor = System.Drawing.Color.Khaki;
+            this.popuMovie_dgv.Location = new System.Drawing.Point(6, 6);
+            this.popuMovie_dgv.Name = "popuMovie_dgv";
+            this.popuMovie_dgv.Size = new System.Drawing.Size(403, 271);
+            this.popuMovie_dgv.TabIndex = 1;
+            this.popuMovie_dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.popuMovie_dgv_CellContentClick);
+            // 
+            // tab_popuCust
+            // 
+            this.tab_popuCust.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tab_popuCust.Controls.Add(this.popuCust_dgv);
+            this.tab_popuCust.Location = new System.Drawing.Point(4, 22);
+            this.tab_popuCust.Name = "tab_popuCust";
+            this.tab_popuCust.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_popuCust.Size = new System.Drawing.Size(415, 283);
+            this.tab_popuCust.TabIndex = 4;
+            this.tab_popuCust.Text = "Popular Customer";
+            // 
+            // popuCust_dgv
+            // 
+            this.popuCust_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.popuCust_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.popuCust_dgv.Location = new System.Drawing.Point(6, 6);
+            this.popuCust_dgv.Name = "popuCust_dgv";
+            this.popuCust_dgv.Size = new System.Drawing.Size(403, 271);
+            this.popuCust_dgv.TabIndex = 0;
+            // 
             // panelMovie
             // 
+            this.panelMovie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.panelMovie.Controls.Add(this.Update_movie_btn);
             this.panelMovie.Controls.Add(this.Delete_movie_btn);
             this.panelMovie.Controls.Add(this.Add_movie_btn);
@@ -214,30 +259,35 @@
             // 
             // Update_movie_btn
             // 
+            this.Update_movie_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Update_movie_btn.Location = new System.Drawing.Point(139, 290);
             this.Update_movie_btn.Name = "Update_movie_btn";
             this.Update_movie_btn.Size = new System.Drawing.Size(75, 23);
             this.Update_movie_btn.TabIndex = 25;
             this.Update_movie_btn.Text = "Update";
-            this.Update_movie_btn.UseVisualStyleBackColor = true;
+            this.Update_movie_btn.UseVisualStyleBackColor = false;
+            this.Update_movie_btn.Click += new System.EventHandler(this.Update_movie_btn_Click);
             // 
             // Delete_movie_btn
             // 
+            this.Delete_movie_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Delete_movie_btn.Location = new System.Drawing.Point(249, 290);
             this.Delete_movie_btn.Name = "Delete_movie_btn";
             this.Delete_movie_btn.Size = new System.Drawing.Size(75, 23);
             this.Delete_movie_btn.TabIndex = 24;
             this.Delete_movie_btn.Text = "Delete";
-            this.Delete_movie_btn.UseVisualStyleBackColor = true;
+            this.Delete_movie_btn.UseVisualStyleBackColor = false;
+            this.Delete_movie_btn.Click += new System.EventHandler(this.Delete_movie_btn_Click);
             // 
             // Add_movie_btn
             // 
+            this.Add_movie_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Add_movie_btn.Location = new System.Drawing.Point(27, 290);
             this.Add_movie_btn.Name = "Add_movie_btn";
             this.Add_movie_btn.Size = new System.Drawing.Size(75, 23);
             this.Add_movie_btn.TabIndex = 23;
             this.Add_movie_btn.Text = "Add";
-            this.Add_movie_btn.UseVisualStyleBackColor = true;
+            this.Add_movie_btn.UseVisualStyleBackColor = false;
             this.Add_movie_btn.Click += new System.EventHandler(this.Add_movie_btn_Click);
             // 
             // Genre_text
@@ -250,6 +300,7 @@
             // Genre_label
             // 
             this.Genre_label.AutoSize = true;
+            this.Genre_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Genre_label.Location = new System.Drawing.Point(18, 236);
             this.Genre_label.Name = "Genre_label";
             this.Genre_label.Size = new System.Drawing.Size(36, 13);
@@ -280,6 +331,7 @@
             // Plot_label
             // 
             this.Plot_label.AutoSize = true;
+            this.Plot_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Plot_label.Location = new System.Drawing.Point(18, 201);
             this.Plot_label.Name = "Plot_label";
             this.Plot_label.Size = new System.Drawing.Size(25, 13);
@@ -289,6 +341,7 @@
             // Copies_label
             // 
             this.Copies_label.AutoSize = true;
+            this.Copies_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Copies_label.Location = new System.Drawing.Point(18, 168);
             this.Copies_label.Name = "Copies_label";
             this.Copies_label.Size = new System.Drawing.Size(39, 13);
@@ -298,6 +351,7 @@
             // Rental_cost_label
             // 
             this.Rental_cost_label.AutoSize = true;
+            this.Rental_cost_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Rental_cost_label.Location = new System.Drawing.Point(18, 134);
             this.Rental_cost_label.Name = "Rental_cost_label";
             this.Rental_cost_label.Size = new System.Drawing.Size(61, 13);
@@ -307,6 +361,7 @@
             // Year_label
             // 
             this.Year_label.AutoSize = true;
+            this.Year_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Year_label.Location = new System.Drawing.Point(18, 96);
             this.Year_label.Name = "Year_label";
             this.Year_label.Size = new System.Drawing.Size(29, 13);
@@ -330,9 +385,11 @@
             // Movie_features
             // 
             this.Movie_features.AutoSize = true;
+            this.Movie_features.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.Movie_features.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Movie_features.Location = new System.Drawing.Point(90, 4);
             this.Movie_features.Name = "Movie_features";
-            this.Movie_features.Size = new System.Drawing.Size(77, 13);
+            this.Movie_features.Size = new System.Drawing.Size(127, 20);
             this.Movie_features.TabIndex = 0;
             this.Movie_features.Text = "Movie features";
             // 
@@ -346,6 +403,7 @@
             // Tittle_label
             // 
             this.Tittle_label.AutoSize = true;
+            this.Tittle_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Tittle_label.Location = new System.Drawing.Point(18, 61);
             this.Tittle_label.Name = "Tittle_label";
             this.Tittle_label.Size = new System.Drawing.Size(30, 13);
@@ -355,6 +413,7 @@
             // Rating_label
             // 
             this.Rating_label.AutoSize = true;
+            this.Rating_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Rating_label.Location = new System.Drawing.Point(18, 28);
             this.Rating_label.Name = "Rating_label";
             this.Rating_label.Size = new System.Drawing.Size(38, 13);
@@ -363,6 +422,7 @@
             // 
             // panelRental
             // 
+            this.panelRental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.panelRental.Controls.Add(this.DateTime_returned_text);
             this.panelRental.Controls.Add(this.DateTime_rented_text);
             this.panelRental.Controls.Add(this.Return_Movie_renatl_btn);
@@ -397,12 +457,13 @@
             // 
             // Return_Movie_renatl_btn
             // 
+            this.Return_Movie_renatl_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Return_Movie_renatl_btn.Location = new System.Drawing.Point(154, 222);
             this.Return_Movie_renatl_btn.Name = "Return_Movie_renatl_btn";
             this.Return_Movie_renatl_btn.Size = new System.Drawing.Size(108, 23);
             this.Return_Movie_renatl_btn.TabIndex = 28;
             this.Return_Movie_renatl_btn.Text = "Return Movie";
-            this.Return_Movie_renatl_btn.UseVisualStyleBackColor = true;
+            this.Return_Movie_renatl_btn.UseVisualStyleBackColor = false;
             this.Return_Movie_renatl_btn.Click += new System.EventHandler(this.Return_Movie_renatl_btn_Click);
             // 
             // Customer_name_text
@@ -414,12 +475,13 @@
             // 
             // Issue_Movie_rental_btn
             // 
+            this.Issue_Movie_rental_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Issue_Movie_rental_btn.Location = new System.Drawing.Point(27, 222);
             this.Issue_Movie_rental_btn.Name = "Issue_Movie_rental_btn";
             this.Issue_Movie_rental_btn.Size = new System.Drawing.Size(75, 23);
             this.Issue_Movie_rental_btn.TabIndex = 26;
             this.Issue_Movie_rental_btn.Text = "Issue Movie";
-            this.Issue_Movie_rental_btn.UseVisualStyleBackColor = true;
+            this.Issue_Movie_rental_btn.UseVisualStyleBackColor = false;
             this.Issue_Movie_rental_btn.Click += new System.EventHandler(this.Issue_Movie_rental_btn_Click);
             // 
             // Movie_name_text
@@ -432,6 +494,7 @@
             // Date_returned_label
             // 
             this.Date_returned_label.AutoSize = true;
+            this.Date_returned_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Date_returned_label.Location = new System.Drawing.Point(24, 186);
             this.Date_returned_label.Name = "Date_returned_label";
             this.Date_returned_label.Size = new System.Drawing.Size(72, 13);
@@ -441,6 +504,7 @@
             // Date_rented_label
             // 
             this.Date_rented_label.AutoSize = true;
+            this.Date_rented_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Date_rented_label.Location = new System.Drawing.Point(24, 142);
             this.Date_rented_label.Name = "Date_rented_label";
             this.Date_rented_label.Size = new System.Drawing.Size(63, 13);
@@ -450,15 +514,18 @@
             // Rental_features
             // 
             this.Rental_features.AutoSize = true;
+            this.Rental_features.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.Rental_features.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Rental_features.Location = new System.Drawing.Point(100, 7);
             this.Rental_features.Name = "Rental_features";
-            this.Rental_features.Size = new System.Drawing.Size(79, 13);
+            this.Rental_features.Size = new System.Drawing.Size(134, 20);
             this.Rental_features.TabIndex = 4;
             this.Rental_features.Text = "Rental features";
             // 
             // Movie_name_label
             // 
             this.Movie_name_label.AutoSize = true;
+            this.Movie_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Movie_name_label.Location = new System.Drawing.Point(24, 53);
             this.Movie_name_label.Name = "Movie_name_label";
             this.Movie_name_label.Size = new System.Drawing.Size(65, 13);
@@ -468,6 +535,7 @@
             // Customer_name_label
             // 
             this.Customer_name_label.AutoSize = true;
+            this.Customer_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Customer_name_label.Location = new System.Drawing.Point(24, 95);
             this.Customer_name_label.Name = "Customer_name_label";
             this.Customer_name_label.Size = new System.Drawing.Size(80, 13);
@@ -477,6 +545,7 @@
             // 
             // panelCustomer
             // 
+            this.panelCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.panelCustomer.Controls.Add(this.Update_customer_btn);
             this.panelCustomer.Controls.Add(this.Delete_customer_btn);
             this.panelCustomer.Controls.Add(this.Phone_text);
@@ -489,29 +558,31 @@
             this.panelCustomer.Controls.Add(this.Last_name_label);
             this.panelCustomer.Controls.Add(this.Address_label);
             this.panelCustomer.Controls.Add(this.Customer_features);
-            this.panelCustomer.Location = new System.Drawing.Point(441, 357);
+            this.panelCustomer.Location = new System.Drawing.Point(441, 327);
             this.panelCustomer.Name = "panelCustomer";
             this.panelCustomer.Size = new System.Drawing.Size(419, 294);
             this.panelCustomer.TabIndex = 3;
             // 
             // Update_customer_btn
             // 
+            this.Update_customer_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Update_customer_btn.Location = new System.Drawing.Point(160, 256);
             this.Update_customer_btn.Name = "Update_customer_btn";
             this.Update_customer_btn.Size = new System.Drawing.Size(75, 23);
             this.Update_customer_btn.TabIndex = 26;
             this.Update_customer_btn.Text = "Update";
-            this.Update_customer_btn.UseVisualStyleBackColor = true;
+            this.Update_customer_btn.UseVisualStyleBackColor = false;
             this.Update_customer_btn.Click += new System.EventHandler(this.Update_customer_btn_Click);
             // 
             // Delete_customer_btn
             // 
+            this.Delete_customer_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Delete_customer_btn.Location = new System.Drawing.Point(275, 256);
             this.Delete_customer_btn.Name = "Delete_customer_btn";
             this.Delete_customer_btn.Size = new System.Drawing.Size(75, 23);
             this.Delete_customer_btn.TabIndex = 30;
             this.Delete_customer_btn.Text = "Delete";
-            this.Delete_customer_btn.UseVisualStyleBackColor = true;
+            this.Delete_customer_btn.UseVisualStyleBackColor = false;
             this.Delete_customer_btn.Click += new System.EventHandler(this.Delete_customer_btn_Click);
             // 
             // Phone_text
@@ -523,12 +594,13 @@
             // 
             // Add_customer_btn
             // 
+            this.Add_customer_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Add_customer_btn.Location = new System.Drawing.Point(46, 256);
             this.Add_customer_btn.Name = "Add_customer_btn";
             this.Add_customer_btn.Size = new System.Drawing.Size(75, 23);
             this.Add_customer_btn.TabIndex = 29;
             this.Add_customer_btn.Text = "Add";
-            this.Add_customer_btn.UseVisualStyleBackColor = true;
+            this.Add_customer_btn.UseVisualStyleBackColor = false;
             this.Add_customer_btn.Click += new System.EventHandler(this.Add_customer_btn_Click);
             // 
             // Address_text
@@ -549,6 +621,7 @@
             // First_name_label
             // 
             this.First_name_label.AutoSize = true;
+            this.First_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.First_name_label.Location = new System.Drawing.Point(28, 77);
             this.First_name_label.Name = "First_name_label";
             this.First_name_label.Size = new System.Drawing.Size(55, 13);
@@ -565,6 +638,7 @@
             // Phone_label
             // 
             this.Phone_label.AutoSize = true;
+            this.Phone_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Phone_label.Location = new System.Drawing.Point(28, 213);
             this.Phone_label.Name = "Phone_label";
             this.Phone_label.Size = new System.Drawing.Size(38, 13);
@@ -574,6 +648,7 @@
             // Last_name_label
             // 
             this.Last_name_label.AutoSize = true;
+            this.Last_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Last_name_label.Location = new System.Drawing.Point(28, 118);
             this.Last_name_label.Name = "Last_name_label";
             this.Last_name_label.Size = new System.Drawing.Size(56, 13);
@@ -583,6 +658,7 @@
             // Address_label
             // 
             this.Address_label.AutoSize = true;
+            this.Address_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Address_label.Location = new System.Drawing.Point(28, 167);
             this.Address_label.Name = "Address_label";
             this.Address_label.Size = new System.Drawing.Size(45, 13);
@@ -592,49 +668,36 @@
             // Customer_features
             // 
             this.Customer_features.AutoSize = true;
+            this.Customer_features.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.Customer_features.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Customer_features.ForeColor = System.Drawing.Color.Black;
             this.Customer_features.Location = new System.Drawing.Point(143, 12);
             this.Customer_features.Name = "Customer_features";
-            this.Customer_features.Size = new System.Drawing.Size(92, 13);
+            this.Customer_features.Size = new System.Drawing.Size(158, 20);
             this.Customer_features.TabIndex = 4;
             this.Customer_features.Text = "Customer features";
             // 
-            // tab_popularMovie
+            // rentedOut_button
             // 
-            this.tab_popularMovie.Controls.Add(this.popuMovie_dgv);
-            this.tab_popularMovie.Location = new System.Drawing.Point(4, 22);
-            this.tab_popularMovie.Name = "tab_popularMovie";
-            this.tab_popularMovie.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_popularMovie.Size = new System.Drawing.Size(415, 283);
-            this.tab_popularMovie.TabIndex = 3;
-            this.tab_popularMovie.Text = "Popular Movies";
-            this.tab_popularMovie.UseVisualStyleBackColor = true;
+            this.rentedOut_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.rentedOut_button.Location = new System.Drawing.Point(691, 647);
+            this.rentedOut_button.Name = "rentedOut_button";
+            this.rentedOut_button.Size = new System.Drawing.Size(75, 23);
+            this.rentedOut_button.TabIndex = 31;
+            this.rentedOut_button.Text = "Rented Out";
+            this.rentedOut_button.UseVisualStyleBackColor = false;
+            this.rentedOut_button.Click += new System.EventHandler(this.rentedOut_button_Click);
             // 
-            // tab_popuCust
+            // allRented_button
             // 
-            this.tab_popuCust.Controls.Add(this.popuCust_dgv);
-            this.tab_popuCust.Location = new System.Drawing.Point(4, 22);
-            this.tab_popuCust.Name = "tab_popuCust";
-            this.tab_popuCust.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_popuCust.Size = new System.Drawing.Size(415, 283);
-            this.tab_popuCust.TabIndex = 4;
-            this.tab_popuCust.Text = "Popular Customer";
-            this.tab_popuCust.UseVisualStyleBackColor = true;
-            // 
-            // popuCust_dgv
-            // 
-            this.popuCust_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.popuCust_dgv.Location = new System.Drawing.Point(27, 19);
-            this.popuCust_dgv.Name = "popuCust_dgv";
-            this.popuCust_dgv.Size = new System.Drawing.Size(365, 246);
-            this.popuCust_dgv.TabIndex = 0;
-            // 
-            // popuMovie_dgv
-            // 
-            this.popuMovie_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.popuMovie_dgv.Location = new System.Drawing.Point(25, 18);
-            this.popuMovie_dgv.Name = "popuMovie_dgv";
-            this.popuMovie_dgv.Size = new System.Drawing.Size(365, 246);
-            this.popuMovie_dgv.TabIndex = 1;
+            this.allRented_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.allRented_button.Location = new System.Drawing.Point(472, 647);
+            this.allRented_button.Name = "allRented_button";
+            this.allRented_button.Size = new System.Drawing.Size(101, 23);
+            this.allRented_button.TabIndex = 32;
+            this.allRented_button.Text = "All Rented Movies";
+            this.allRented_button.UseVisualStyleBackColor = false;
+            this.allRented_button.Click += new System.EventHandler(this.allRented_button_Click);
             // 
             // Video_Rental
             // 
@@ -642,6 +705,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(888, 682);
+            this.Controls.Add(this.allRented_button);
+            this.Controls.Add(this.rentedOut_button);
             this.Controls.Add(this.panelCustomer);
             this.Controls.Add(this.panelRental);
             this.Controls.Add(this.panelMovie);
@@ -656,16 +721,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.movie_grid)).EndInit();
             this.rental.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rental_grid)).EndInit();
+            this.tab_popularMovie.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popuMovie_dgv)).EndInit();
+            this.tab_popuCust.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popuCust_dgv)).EndInit();
             this.panelMovie.ResumeLayout(false);
             this.panelMovie.PerformLayout();
             this.panelRental.ResumeLayout(false);
             this.panelRental.PerformLayout();
             this.panelCustomer.ResumeLayout(false);
             this.panelCustomer.PerformLayout();
-            this.tab_popularMovie.ResumeLayout(false);
-            this.tab_popuCust.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.popuCust_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popuMovie_dgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -728,6 +793,8 @@
         private System.Windows.Forms.DataGridView popuMovie_dgv;
         private System.Windows.Forms.TabPage tab_popuCust;
         private System.Windows.Forms.DataGridView popuCust_dgv;
+        private System.Windows.Forms.Button rentedOut_button;
+        private System.Windows.Forms.Button allRented_button;
     }
 }
 
